@@ -71,15 +71,54 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            margin: 10px 0;
-            transition: background-color 0.3s;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            font-weight: 500;
         }
 
         .export-button:hover {
             background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Import button */
+        .import-button {
+            padding: 10px 15px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .import-button:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .import-button:focus {
+            outline: 2px solid #FFC107;
+            outline-offset: 2px;
+        }
+
+        /* Control buttons group */
+        .control-buttons-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         /* Calculator result styles */
@@ -322,6 +361,269 @@
 .pagination-button { ... }
 .pagination-button:disabled { ... }
 .pagination-info { ... }
+ 
+.digit-filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* Import Modal Styles */
+.import-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background-color: #dc0000;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    text-align: center;
+    padding: 20px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #dc0000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success State */
+.import-success {
+    text-align: center;
+    padding: 20px;
+}
+
+.success-icon {
+    font-size: 3em;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.import-success h4 {
+    color: #4CAF50;
+    margin: 10px 0;
+}
+
+.import-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.undo-button {
+    padding: 8px 15px;
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.undo-button:hover {
+    background-color: #F57C00;
+}
+
+.continue-button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+}
+
+.continue-button:hover {
+    background-color: #45a049;
+}
+
+/* Error State */
+.import-error {
+    text-align: center;
+    padding: 20px;
+}
+
+.error-icon {
+    font-size: 3em;
+    color: #F44336;
+    margin-bottom: 15px;
+}
+
+.import-error h4 {
+    color: #F44336;
+    margin: 10px 0;
+}
+
+.error-details {
+    text-align: left;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+    border-left: 4px solid #F44336;
+}
+
+.error-details h5 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.error-details ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.error-details li {
+    margin: 5px 0;
+}
+
+.retry-button {
+    padding: 8px 15px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.retry-button:hover {
+    background-color: #1976D2;
+}
+
+/* Backup Notification */
+.backup-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(300px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .control-buttons-group {
+        flex-direction: column;
+    }
+    
+    .import-actions {
+        flex-direction: column;
+    }
+    
+    .backup-notification {
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+}
 
 
     </style>
